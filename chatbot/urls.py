@@ -4,5 +4,6 @@ from . import views
 app_name = 'chatbot'
 
 urlpatterns = [
-    path('', views.index, name='index'),  # chatbot landing page
+    path('', views.index, name='index'),
+    path('reset/', views.reset_chat, name='reset'),  # <-- This line is required
 ]

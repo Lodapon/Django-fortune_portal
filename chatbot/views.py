@@ -6,45 +6,92 @@ from openai import OpenAI
 
 client = OpenAI(api_key=settings.OPENAI_API_KEY)
 
+MAX_QUESTIONS = 3
+NUM_CARDS = 10
+
 def load_card_data():
+    """Load tarot card data from JSON file."""
     path = os.path.join(settings.BASE_DIR, 'chatbot', 'data', 'tarot_cards.json')
-    with open(path, 'r', encoding='utf-8') as f:
-        data = json.load(f)
+    try:
+        with open(path, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+    except Exception as e:
+        data = []
+        print(f"Error loading tarot_cards.json: {e}")
+
     card_dict = {}
     for i, card in enumerate(data):
         card_dict[str(i + 1)] = {
-            "name": card["name"],
+            "name": card.get("name", "ไม่ทราบชื่อไพ่"),
             "meaning": card.get("upright_meaning", "ไม่มีคำทำนาย")
         }
     return card_dict
 
 def reset_chat(request):
+    """Clear all session data and restart."""
     request.session.flush()
     return redirect('chatbot:index')
 
 def get_card_image_filename(name):
+    """Return filename for tarot card image, handling special cases."""
     special_cases = {
         "The Judgement": "Judgement.jpg",
-        # Add more if needed
+        # Add more special cases here if needed
     }
-    return f"chatbot/{special_cases.get(name, name.replace(' ', '_') + '.jpg')}"
+    if not name:
+        return ""
+    filename = special_cases.get(name, name.replace(' ', '_') + '.jpg')
+    return f"chatbot/{filename}"
 
 @csrf_exempt
 def index(request):
     CARD_DATA = load_card_data()
 
+    # Initialize session variables if first visit
     if 'chat_history' not in request.session:
         request.session['chat_history'] = []
         request.session['has_drawn'] = False
         request.session['selected_cards'] = []
         request.session['question_count'] = 0
-
-    drawn_cards_info = []
+        request.session['extra_cards_info'] = []
+        request.session['extra_cards_suggested'] = False
 
     if request.method == 'POST':
+        action = request.POST.get('action')
+
+        if action == 'draw_extra_cards':
+            # Draw 3 new cards that are not already in selected_cards
+            already_drawn = request.session.get('selected_cards', [])
+            import random
+            available_ids = [str(i) for i in range(1, 79) if str(i) not in already_drawn]
+            extra_drawn = random.sample(available_ids, 3)
+
+            request.session['extra_drawn_cards'] = extra_drawn  # optional tracking
+            CARD_DATA = load_card_data()
+
+            extra_cards_info = [
+                {
+                    "position": f"ไพ่เพิ่มเติมใบที่ {i+1}",
+                    "position_description": "ไพ่เพิ่มเติมเพื่อเจาะลึกสถานการณ์",
+                    "card": CARD_DATA.get(card_id, {}),
+                    "orientation": 'upright',
+                    "image": get_card_image_filename(CARD_DATA.get(card_id, {}).get('name', ''))
+                }
+                for i, card_id in enumerate(extra_drawn)
+            ]
+
+            request.session['extra_cards_info'] = extra_cards_info
+            request.session['chat_history'].append({
+                'role': 'bot',
+                'text': "🔮 คุณได้จับไพ่เพิ่มเติม 3 ใบแล้ว สามารถถามคำถามต่อได้เลยค่ะ"
+            })
+            request.session.modified = True
+            return redirect('chatbot:index')   
+
+        # Handle card selection submission
         selected = request.POST.getlist('selected_cards')
-        
-        if len(selected) == 10:
+
+        if len(selected) == NUM_CARDS:
             request.session['selected_cards'] = selected
             request.session['has_drawn'] = True
 
@@ -61,7 +108,7 @@ def index(request):
                 {"label": "ผลลัพธ์", "description": "ผลลัพธ์สุดท้ายของสถานการณ์นี้หากดำเนินไปตามแนวทางปัจจุบัน"}
             ]
 
-            orientations = ['upright'] * 10  # Static upright orientation
+            orientations = ['upright'] * NUM_CARDS  # Static orientation for now
 
             selected_cards_info = [
                 {
@@ -80,40 +127,45 @@ def index(request):
                 f"{i+1}. {card['card'].get('name', 'ไม่พบชื่อไพ่')}"
                 for i, card in enumerate(selected_cards_info)
             ])
-            request.session['chat_history'].append({
-                'role': 'bot',
-                'text': summary
-            })
+
+            request.session['chat_history'].append({'role': 'bot', 'text': summary})
             request.session.modified = True
+
             return redirect('chatbot:index')
 
         else:
+            # Handle user questions
             user_message = request.POST.get('message')
             if user_message:
                 request.session['chat_history'].append({'role': 'user', 'text': user_message})
 
-                if not request.session['has_drawn']:
+                if not request.session.get('has_drawn', False):
                     request.session['chat_history'].append({
                         'role': 'bot',
                         'text': 'กรุณาเลือกไพ่ 10 ใบจากสำรับด้านล่างก่อนถามคำถามค่ะ'
                     })
-
-                elif request.session['question_count'] >= 3:
-                    request.session['chat_history'].append({
-                        'role': 'bot',
-                        'text': 'คุณได้ถามครบ 3 คำถามแล้ว หากต้องการเริ่มใหม่ กรุณากดปุ่ม 🔄 เริ่มใหม่'
-                    })
-
                 else:
                     selected_cards_info = request.session.get('selected_cards_info', [])
+                    extra_cards_info = request.session.get('extra_cards_info', [])
+                    all_cards_info = selected_cards_info + extra_cards_info
+
+                    # Suggest drawing extra cards after 3rd question
+                    if request.session.get('question_count', 0) == 3 and not request.session.get('extra_cards_suggested', False):
+                        request.session['chat_history'].append({
+                            'role': 'bot',
+                            'text': '🃏 คุณได้ถามครบ 3 คำถามแล้ว หากต้องการคำแนะนำเพิ่มเติม คุณสามารถจับไพ่เพิ่มอีก 3 ใบเพื่อเจาะลึกสถานการณ์มากขึ้น'
+                        })
+                        request.session['extra_cards_suggested'] = True
+
+                    # Build card summary from all drawn cards
                     card_summary = "\n".join([
                         f"{card['position']}: {card['card'].get('name', '')} - {card['card'].get('meaning', '')}"
-                        for card in selected_cards_info
+                        for card in all_cards_info
                     ])
 
                     prompt = f"""ผู้ใช้ถามว่า: "{user_message}"
 
-ด้านล่างคือไพ่ 10 ใบที่ผู้ใช้จับได้ (รูปแบบ Celtic Cross):
+ไพ่ทั้งหมดที่ผู้ใช้จับได้ (รวมไพ่เพิ่มเติมถ้ามี):
 
 {card_summary}
 
@@ -121,7 +173,7 @@ def index(request):
 
                     try:
                         response = client.chat.completions.create(
-                            model="gpt-4o",  # or "gpt-4"
+                            model="gpt-4o",
                             messages=[
                                 {"role": "system", "content": "คุณคือหมอดูไพ่ทาโรต์ผู้ให้คำปรึกษาเรื่องความรัก การงาน และชีวิต"},
                                 {"role": "user", "content": prompt}
@@ -133,20 +185,19 @@ def index(request):
                         bot_reply = f"เกิดข้อผิดพลาดในการตอบคำถาม: {str(e)}"
 
                     request.session['chat_history'].append({'role': 'bot', 'text': bot_reply})
-                    request.session['question_count'] += 1
+                    request.session['question_count'] = request.session.get('question_count', 0) + 1
                     request.session.modified = True
 
             return redirect('chatbot:index')
 
-    if request.session.get('has_drawn'):
-        drawn_cards_info = request.session.get('selected_cards_info', [])
+    # If GET or no POST redirect
+    drawn_cards_info = request.session.get('selected_cards_info', []) if request.session.get('has_drawn', False) else []
 
-    response = render(request, 'chatbot/chat.html', {
-        'chat_history': request.session['chat_history'],
+    return render(request, 'chatbot/chat.html', {
+        'chat_history': request.session.get('chat_history', []),
         'show_cards': not request.session.get('has_drawn', False),
         'selected_cards': request.session.get('selected_cards', []),
         'drawn_cards_info': drawn_cards_info,
+        'extra_cards_info': request.session.get('extra_cards_info', []),
         'card_range': range(1, 79),
     })
-
-    return response

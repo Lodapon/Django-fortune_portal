@@ -84,6 +84,20 @@
             {% endfor %}
         </div>
     {% endif %}
+    
+    {% if request.session.extra_cards_info %}
+        <hr>
+        <h3 style="text-align: center; color: darkorange;">ไพ่เพิ่มเติมอีก 3 ใบ</h3>
+        <div class="card-grid">
+            {% for card in request.session.extra_cards_info %}
+                <div style="text-align: center; border: 1px solid #bbb; padding: 10px; border-radius: 8px; background: #fff7e6;">
+                    <img src="{% static card.image %}" width="100" style="margin: 5px 0;"><br>
+                    <strong>{{ card.name }}</strong><br>
+                    <small>{{ card.meaning }}</small>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
 
     <div style="text-align: center; margin-top: 20px;">
         <a href="{% url 'chatbot:reset' %}" style="color: red;">🔄 เริ่มใหม่</a>
@@ -97,13 +111,25 @@
         {% endfor %}
     </div>
 
-    <div class="chat-input">
-        <form method="post">
-            {% csrf_token %}
-            <input type="text" name="message" placeholder="พิมพ์คำถามของคุณ..." style="width: 70%; padding: 10px;" required>
-            <button type="submit" style="padding: 10px;">ส่ง</button>
-        </form>
-    </div>
+        {% if request.session.question_count >= 3 and not request.session.extra_cards_info %}
+            <div style="text-align: center; margin: 15px 0;">
+                <form method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="action" value="draw_extra_cards">
+                    <button type="submit" style="background-color: gold; color: black; padding: 10px 15px; border-radius: 5px;">
+                        🔮 จับไพ่เพิ่มอีก 3 ใบ
+                    </button>
+                </form>
+            </div>
+        {% endif %}
+
+        <div class="chat-input">
+            <form method="post">
+                {% csrf_token %}
+                <input type="text" name="message" placeholder="พิมพ์คำถามของคุณ..." style="width: 70%; padding: 10px;" required>
+                <button type="submit" style="padding: 10px;">ส่ง</button>
+            </form>
+        </div>
 
 </div>
 {% endblock %}

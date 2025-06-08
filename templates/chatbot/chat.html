@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}🃏 ดูดวงไพ่ทาโรต์{% endblock %}
+
+{% block content %}
+<style>
+    .chat-container {
+        max-width: 600px;
+        margin: 0 auto;
+        text-align: left;
+        border: 1px solid #ccc;
+        padding: 20px;
+        border-radius: 10px;
+        background: #fefefe;
+        height: 500px;
+        overflow-y: auto;
+    }
+    .message {
+        margin: 10px 0;
+    }
+    .user {
+        text-align: right;
+        color: blue;
+    }
+    .bot {
+        text-align: left;
+        color: green;
+    }
+    .chat-input {
+        margin-top: 20px;
+        text-align: center;
+    }
+    .card-grid {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 10px;
+        justify-items: center;
+    }
+</style>
+
+<div class="content-wrapper" style="max-width: 800px; margin: 0 auto;">
+
+    {% if show_cards %}
+        <h3 style="text-align: center;">เลือกไพ่ 10 ใบ</h3>
+        <form method="post">
+            {% csrf_token %}
+            <div style="display: flex; flex-wrap: wrap; justify-content: center;">
+                {% for i in card_range %}
+                    <label style="margin: 5px;">
+                        <img src="{% static 'chatbot/card_back.jpg' %}" width="80">
+                        <br>
+                        <input type="checkbox" name="selected_cards" value="{{ i }}" onclick="limitSelection(this)">
+                    </label>
+                {% endfor %}
+            </div>
+            <div style="text-align: center; margin-top: 10px;">
+                <button type="submit">ยืนยันการเลือกไพ่</button>
+            </div>
+        </form>
+        <script>
+            function limitSelection(checkbox) {
+                const checked = document.querySelectorAll('input[name="selected_cards"]:checked');
+                if (checked.length > 10) {
+                    checkbox.checked = false;
+                    alert("คุณสามารถเลือกไพ่ได้สูงสุด 10 ใบเท่านั้น");
+                }
+            }
+        </script>
+    {% endif %}
+
+    {% if drawn_cards_info %}
+        <hr>
+        <h3 style="text-align: center;">ผลการเปิดไพ่ของคุณ</h3>
+        <div class="card-grid">
+            {% for card in drawn_cards_info %}
+                <div style="text-align: center; border: 1px solid #ddd; padding: 10px; border-radius: 8px; background: #f9f9f9;">
+                    <div style="font-weight: bold; color: #444;">ตำแหน่ง: {{ card.position }}</div>
+                    <div style="font-size: 12px; color: #666;">{{ card.position_description }}</div>
+                    <img src="{% static card.image %}" width="100" style="margin: 5px 0;"><br>
+                    <strong>{{ card.name }}</strong><br>
+                    <small>{{ card.meaning }}</small>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <div style="text-align: center; margin-top: 20px;">
+        <a href="{% url 'chatbot:reset' %}" style="color: red;">🔄 เริ่มใหม่</a>
+    </div>
+
+    <div class="chat-container">
+        {% for msg in chat_history %}
+            <div class="message {{ msg.role }}">
+                <strong>{{ msg.role|title }}:</strong> {{ msg.text }}
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="chat-input">
+        <form method="post">
+            {% csrf_token %}
+            <input type="text" name="message" placeholder="พิมพ์คำถามของคุณ..." style="width: 70%; padding: 10px;" required>
+            <button type="submit" style="padding: 10px;">ส่ง</button>
+        </form>
+    </div>
+
+</div>
+{% endblock %}
+
+<script>
+    const chatContainer = document.querySelector('.chat-container');
+    chatContainer.scrollTop = chatContainer.scrollHeight;
+</script>

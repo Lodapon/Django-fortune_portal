@@ -1,0 +1,470 @@
+[
+  {
+    "name": "The Fool",
+    "arcana_type": "Major",
+    "upright_meaning": "New beginnings, spontaneity, free spirit",
+    "reversed_meaning": "Recklessness, taken advantage of, inconsideration"
+  },
+  {
+    "name": "The Magician",
+    "arcana_type": "Major",
+    "upright_meaning": "Manifestation, resourcefulness, power",
+    "reversed_meaning": "Manipulation, poor planning, untapped talents"
+  },
+  {
+    "name": "The High Priestess",
+    "arcana_type": "Major",
+    "upright_meaning": "Intuition, unconscious knowledge, mystery",
+    "reversed_meaning": "Secrets, disconnected from intuition, withdrawal"
+  },
+  {
+    "name": "The Empress",
+    "arcana_type": "Major",
+    "upright_meaning": "Fertility, beauty, nature, nurturing",
+    "reversed_meaning": "Creative block, dependence on others"
+  },
+  {
+    "name": "The Emperor",
+    "arcana_type": "Major",
+    "upright_meaning": "Authority, structure, control, fatherhood",
+    "reversed_meaning": "Domination, excessive control, rigidity"
+  },
+  {
+    "name": "The Hierophant",
+    "arcana_type": "Major",
+    "upright_meaning": "Tradition, spiritual wisdom, conformity",
+    "reversed_meaning": "Rebellion, personal beliefs, freedom"
+  },
+  {
+    "name": "The Lovers",
+    "arcana_type": "Major",
+    "upright_meaning": "Love, harmony, partnerships, choices",
+    "reversed_meaning": "Imbalance, conflict, disharmony"
+  },
+  {
+    "name": "The Chariot",
+    "arcana_type": "Major",
+    "upright_meaning": "Determination, control, willpower",
+    "reversed_meaning": "Self-doubt, lack of control, aggression"
+  },
+  {
+    "name": "Strength",
+    "arcana_type": "Major",
+    "upright_meaning": "Courage, persuasion, inner strength",
+    "reversed_meaning": "Insecurity, raw emotion, self-doubt"
+  },
+  {
+    "name": "The Hermit",
+    "arcana_type": "Major",
+    "upright_meaning": "Soul-searching, introspection, inner guidance",
+    "reversed_meaning": "Isolation, loneliness, withdrawal"
+  },
+  {
+    "name": "Wheel of Fortune",
+    "arcana_type": "Major",
+    "upright_meaning": "Good luck, karma, life cycles",
+    "reversed_meaning": "Bad luck, resistance to change, breaking cycles"
+  },
+  {
+    "name": "Justice",
+    "arcana_type": "Major",
+    "upright_meaning": "Fairness, truth, law",
+    "reversed_meaning": "Dishonesty, imbalance, legal complications"
+  },
+  {
+    "name": "The Hanged Man",
+    "arcana_type": "Major",
+    "upright_meaning": "Pause, surrender, letting go, new perspectives",
+    "reversed_meaning": "Delays, resistance, stalling, indecision"
+  },
+  {
+    "name": "Death",
+    "arcana_type": "Major",
+    "upright_meaning": "Endings, change, transformation",
+    "reversed_meaning": "Resistance to change, fear, stagnation"
+  },
+  {
+    "name": "Temperance",
+    "arcana_type": "Major",
+    "upright_meaning": "Balance, patience, moderation",
+    "reversed_meaning": "Imbalance, excess, lack of long-term vision"
+  },
+  {
+    "name": "The Devil",
+    "arcana_type": "Major",
+    "upright_meaning": "Addiction, materialism, playfulness",
+    "reversed_meaning": "Releasing limitations, freedom, reclaiming power"
+  },
+  {
+    "name": "The Tower",
+    "arcana_type": "Major",
+    "upright_meaning": "Sudden change, upheaval, revelation",
+    "reversed_meaning": "Fear of change, averting disaster, delaying the inevitable"
+  },
+  {
+    "name": "The Star",
+    "arcana_type": "Major",
+    "upright_meaning": "Hope, faith, purpose, renewal",
+    "reversed_meaning": "Lack of faith, despair, disconnection"
+  },
+  {
+    "name": "The Moon",
+    "arcana_type": "Major",
+    "upright_meaning": "Illusion, intuition, uncertainty",
+    "reversed_meaning": "Clarity, overcoming fear, unveiling secrets"
+  },
+  {
+    "name": "The Sun",
+    "arcana_type": "Major",
+    "upright_meaning": "Positivity, fun, warmth, success, vitality",
+    "reversed_meaning": "Inner child, feeling down, overly optimistic"
+  },
+  {
+    "name": "The Judgement",
+    "arcana_type": "Major",
+    "upright_meaning": "Judgement, rebirth, inner calling, absolution",
+    "reversed_meaning": "Self-doubt, inner critic, ignoring the call"
+  },
+  {
+    "name": "The World",
+    "arcana_type": "Major",
+    "upright_meaning": "Completion, integration, accomplishment, travel",
+    "reversed_meaning": "Seeking personal closure, short-cuts, delays"
+  },
+  {
+    "name": "Ace of Cups",
+    "arcana_type": "Minor",
+    "upright_meaning": "Love, new relationships, compassion, creativity",
+    "reversed_meaning": "Self-love, intuition, repressed emotions"
+  },
+  {
+    "name": "Two of Cups",
+    "arcana_type": "Minor",
+    "upright_meaning": "Unified love, partnership, mutual attraction",
+    "reversed_meaning": "Self-love, break-ups, disharmony, distrust"
+  },
+  {
+    "name": "Three of Cups",
+    "arcana_type": "Minor",
+    "upright_meaning": "Celebration, friendship, creativity, collaborations",
+    "reversed_meaning": "Independence, alone time, hardcore partying, ‘three’s a crowd’"
+  },
+  {
+    "name": "Four of Cups",
+    "arcana_type": "Minor",
+    "upright_meaning": "Meditation, contemplation, apathy, reevaluation",
+    "reversed_meaning": "Retreat, withdrawal, checking in for alignment"
+  },
+  {
+    "name": "Five of Cups",
+    "arcana_type": "Minor",
+    "upright_meaning": "Regret, failure, disappointment, pessimism",
+    "reversed_meaning": "Personal setbacks, self-forgiveness, moving on"
+  },
+  {
+    "name": "Six of Cups",
+    "arcana_type": "Minor",
+    "upright_meaning": "Revisiting the past, childhood memories, innocence, joy",
+    "reversed_meaning": "Living in the past, forgiveness, lacking playfulness"
+  },
+  {
+    "name": "Seven of Cups",
+    "arcana_type": "Minor",
+    "upright_meaning": "Opportunities, choices, wishful thinking, illusion",
+    "reversed_meaning": "Alignment, personal values, overwhelmed by choices"
+  },
+  {
+    "name": "Eight of Cups",
+    "arcana_type": "Minor",
+    "upright_meaning": "Disappointment, abandonment, withdrawal, escapism",
+    "reversed_meaning": "Trying one more time, indecision, aimless drifting"
+  },
+  {
+    "name": "Nine of Cups",
+    "arcana_type": "Minor",
+    "upright_meaning": "Contentment, satisfaction, gratitude, wish come true",
+    "reversed_meaning": "Inner happiness, materialism, dissatisfaction"
+  },
+  {
+    "name": "Ten of Cups",
+    "arcana_type": "Minor",
+    "upright_meaning": "Divine love, blissful relationships, harmony, alignment",
+    "reversed_meaning": "Disconnection, misaligned values, struggling relationships"
+  },
+  {
+    "name": "Page of Cups",
+    "arcana_type": "Minor",
+    "upright_meaning": "Creative opportunities, intuitive messages, curiosity",
+    "reversed_meaning": "Emotional immaturity, creative blocks, escapism"
+  },
+  {
+    "name": "Knight of Cups",
+    "arcana_type": "Minor",
+    "upright_meaning": "Romance, charm, imagination, beauty",
+    "reversed_meaning": "Overactive imagination, jealousy, moodiness"
+  },
+  {
+    "name": "Queen of Cups",
+    "arcana_type": "Minor",
+    "upright_meaning": "Compassionate, caring, emotionally stable, intuitive",
+    "reversed_meaning": "Inner feelings, self-care, overly sensitive"
+  },
+  {
+    "name": "King of Cups",
+    "arcana_type": "Minor",
+    "upright_meaning": "Emotionally balanced, compassionate, diplomatic",
+    "reversed_meaning": "Emotionally manipulative, moody, volatile"
+  },
+  {
+    "name": "Ace of Swords",
+    "arcana_type": "Minor",
+    "upright_meaning": "Breakthroughs, clarity, sharp mind, new ideas",
+    "reversed_meaning": "Inner clarity, clouded judgement, rethinking an idea"
+  },
+  {
+    "name": "Two of Swords",
+    "arcana_type": "Minor",
+    "upright_meaning": "Difficult decisions, weighing options, avoidance",
+    "reversed_meaning": "Indecision, confusion, information overload"
+  },
+  {
+    "name": "Three of Swords",
+    "arcana_type": "Minor",
+    "upright_meaning": "Heartbreak, emotional pain, sorrow, grief",
+    "reversed_meaning": "Releasing pain, optimism, forgiveness"
+  },
+  {
+    "name": "Four of Swords",
+    "arcana_type": "Minor",
+    "upright_meaning": "Rest, relaxation, meditation, contemplation",
+    "reversed_meaning": "Exhaustion, burnout, stagnation"
+  },
+  {
+    "name": "Five of Swords",
+    "arcana_type": "Minor",
+    "upright_meaning": "Conflict, disagreement, defeat, competition",
+    "reversed_meaning": "Reconciliation, making amends, past resentment"
+  },
+  {
+    "name": "Six of Swords",
+    "arcana_type": "Minor",
+    "upright_meaning": "Transition, change, rite of passage, releasing baggage",
+    "reversed_meaning": "Resistance to change, unfinished business"
+  },
+  {
+    "name": "Seven of Swords",
+    "arcana_type": "Minor",
+    "upright_meaning": "Deception, trickery, strategy, resourcefulness",
+    "reversed_meaning": "Coming clean, rethinking approach, deception"
+  },
+  {
+    "name": "Eight of Swords",
+    "arcana_type": "Minor",
+    "upright_meaning": "Imprisonment, entrapment, self-victimization",
+    "reversed_meaning": "Freedom, release, taking control, empowerment"
+  },
+  {
+    "name": "Nine of Swords",
+    "arcana_type": "Minor",
+    "upright_meaning": "Anxiety, fear, depression, nightmares",
+    "reversed_meaning": "Hope, recovery, reaching out, facing fears"
+  },
+  {
+    "name": "Ten of Swords",
+    "arcana_type": "Minor",
+    "upright_meaning": "Painful endings, deep wounds, betrayal, loss, crisis",
+    "reversed_meaning": "Recovery, regeneration, resisting an inevitable end"
+  },
+  {
+    "name": "Page of Swords",
+    "arcana_type": "Minor",
+    "upright_meaning": "Curiosity, ideas, inspiration, vigilance",
+    "reversed_meaning": "Deception, manipulation, all talk and no action"
+  },
+  {
+    "name": "Knight of Swords",
+    "arcana_type": "Minor",
+    "upright_meaning": "Action, ambition, haste, driven to succeed",
+    "reversed_meaning": "Recklessness, impatience, missed chances"
+  },
+  {
+    "name": "Queen of Swords",
+    "arcana_type": "Minor",
+    "upright_meaning": "Independent, unbiased judgment, clear boundaries, direct communication",
+    "reversed_meaning": "Overly emotional, easily influenced, cold-hearted"
+  },
+  {
+    "name": "King of Swords",
+    "arcana_type": "Minor",
+    "upright_meaning": "Mental clarity, intellectual power, authority, truth",
+    "reversed_meaning": "Manipulative, tyrannical, abusive"
+  },
+  {
+    "name": "Ace of Pentacles",
+    "arcana_type": "Minor",
+    "upright_meaning": "A new financial or career opportunity, manifestation, abundance",
+    "reversed_meaning": "Lost opportunity, lack of planning and foresight"
+  },
+  {
+    "name": "Two of Pentacles",
+    "arcana_type": "Minor",
+    "upright_meaning": "Balance, adaptability, time management, prioritization",
+    "reversed_meaning": "Over-committed, disorganization, reprioritization"
+  },
+  {
+    "name": "Three of Pentacles",
+    "arcana_type": "Minor",
+    "upright_meaning": "Teamwork, collaboration, building, learning",
+    "reversed_meaning": "Disharmony, misalignment, working alone"
+  },
+  {
+    "name": "Four of Pentacles",
+    "arcana_type": "Minor",
+    "upright_meaning": "Saving money, security, conservatism, scarcity mindset",
+    "reversed_meaning": "Greed, over-spending, self-protection"
+  },
+  {
+    "name": "Five of Pentacles",
+    "arcana_type": "Minor",
+    "upright_meaning": "Financial loss, poverty, lack mindset, isolation",
+    "reversed_meaning": "Recovery from financial loss, spiritual poverty"
+  },
+  {
+    "name": "Six of Pentacles",
+    "arcana_type": "Minor",
+    "upright_meaning": "Giving, receiving, sharing wealth, generosity, charity",
+    "reversed_meaning": "Debt, selfishness, one-sided charity"
+  },
+  {
+    "name": "Seven of Pentacles",
+    "arcana_type": "Minor",
+    "upright_meaning": "Long-term view, perseverance, investment, sustainable results",
+    "reversed_meaning": "Lack of reward, impatience, wasted effort"
+  },
+  {
+    "name": "Eight of Pentacles",
+    "arcana_type": "Minor",
+    "upright_meaning": "Apprenticeship, mastery, skill development, hard work",
+    "reversed_meaning": "Perfectionism, uninspired work, lack of focus"
+  },
+  {
+    "name": "Nine of Pentacles",
+    "arcana_type": "Minor",
+    "upright_meaning": "Abundance, luxury, self-sufficiency, financial independence",
+    "reversed_meaning": "Self-worth issues, over-investment in work, hustling too hard"
+  },
+  {
+    "name": "Ten of Pentacles",
+    "arcana_type": "Minor",
+    "upright_meaning": "Wealth, financial security, family, long-term success",
+    "reversed_meaning": "Financial failure, loneliness, loss"
+  },
+  {
+    "name": "Page of Pentacles",
+    "arcana_type": "Minor",
+    "upright_meaning": "Manifestation, financial opportunity, skill development",
+    "reversed_meaning": "Lack of progress, procrastination, short-term focus"
+  },
+  {
+    "name": "Knight of Pentacles",
+    "arcana_type": "Minor",
+    "upright_meaning": "Hard work, productivity, routine, conservatism",
+    "reversed_meaning": "Laziness, boredom, feeling stuck"
+  },
+  {
+    "name": "Queen of Pentacles",
+    "arcana_type": "Minor",
+    "upright_meaning": "Nurturing, practical, providing financially, working parent",
+    "reversed_meaning": "Self-centeredness, jealousy, imbalance in work/family"
+  },
+  {
+    "name": "King of Pentacles",
+    "arcana_type": "Minor",
+    "upright_meaning": "Wealth, business, leadership, discipline, abundance",
+    "reversed_meaning": "Greed, indulgence, stubbornness"
+  },
+  {
+    "name": "Ace of Wands",
+    "arcana_type": "Minor",
+    "upright_meaning": "Inspiration, new opportunities, growth, potential",
+    "reversed_meaning": "An emerging idea, lack of direction, distractions,delays"
+  },
+  {
+    "name": "Two of Wands",
+    "arcana_type": "Minor",
+    "upright_meaning": "Future planning, progress, decisions, discovery",
+    "reversed_meaning": "Personal goals, inner alignment, fear of unknown, lack of planning"
+  },
+  {
+    "name": "Three of Wands",
+    "arcana_type": "Minor",
+    "upright_meaning": "Progress, expansion, foresight, overseas opportunities",
+    "reversed_meaning": "Playing small, lack of foresight, unexpected delays"
+  },
+  {
+    "name": "Four of Wands",
+    "arcana_type": "Minor",
+    "upright_meaning": "Celebration, joy, harmony, relaxation, homecoming",
+    "reversed_meaning": "Personal celebration, inner harmony, conflict with others, transition"
+  },
+  {
+    "name": "Five of Wands",
+    "arcana_type": "Minor",
+    "upright_meaning": "Conflict, disagreements, competition, tension, diversity",
+    "reversed_meaning": "Inner conflict, conflict avoidance, tension release"
+  },
+  {
+    "name": "Six of Wands",
+    "arcana_type": "Minor",
+    "upright_meaning": "Success, public recognition, progress, self- confidence",
+    "reversed_meaning": "Private achievement, personal definition of success, fall from grace, egotism"
+  },
+  {
+    "name": "Seven of Wands",
+    "arcana_type": "Minor",
+    "upright_meaning": "Challenge, competition, protection, perseverance",
+    "reversed_meaning": "Exhaustion, giving up, overwhelmed"
+  },
+  {
+    "name": "Eight of Wands",
+    "arcana_type": "Minor",
+    "upright_meaning": "Movement, fast paced change, action, alignment, air travel",
+    "reversed_meaning": "Delays, frustration, resisting change, internal alignment"
+  },
+  {
+    "name": "Nine of Wands",
+    "arcana_type": "Minor",
+    "upright_meaning": "Resilience, courage, persistence, test of faith, boundaries",
+    "reversed_meaning": "Inner resources, struggle, overwhelm, defensive, paranoia"
+  },
+  {
+    "name": "Ten of Wands",
+    "arcana_type": "Minor",
+    "upright_meaning": "Burden, extra responsibility, hard work, completion",
+    "reversed_meaning": "Doing it all, carrying the burden, delegation, release"
+  },
+  {
+    "name": "Page of Wands",
+    "arcana_type": "Minor",
+    "upright_meaning": "Inspiration, ideas, discovery, limitless potential, free spirit",
+    "reversed_meaning": "Newly-formed ideas, redirecting energy, self- limiting beliefs, a spiritual path"
+  },
+  {
+    "name": "Knight of Wands",
+    "arcana_type": "Minor",
+    "upright_meaning": "Energy, passion, inspired action, adventure, impulsiveness",
+    "reversed_meaning": "Passion project, haste, scattered energy, delays, frustration"
+  },
+  {
+    "name": "Queen of Wands",
+    "arcana_type": "Minor",
+    "upright_meaning": "Courage, confidence, independence, social butterfly, determination",
+    "reversed_meaning": "Self-respect, self-confidence, introverted, re-establish sense of self"
+  },
+  {
+    "name": "King of Wands",
+    "arcana_type": "Minor",
+    "upright_meaning": "Natural-born leader, grand visions, long-term success",
+    "reversed_meaning": "Poor leadership, aggressive goals, high expectations, personal direction"
+  }
+]

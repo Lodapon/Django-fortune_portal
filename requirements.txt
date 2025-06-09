@@ -1,7 +1,6 @@
 annotated-types==0.7.0
 anyio==4.5.2
 asgiref==3.8.1
-backports.zoneinfo==0.2.1
 certifi==2025.4.26
 distro==1.9.0
 django==4.2.22
@@ -24,3 +23,4 @@ sqlparse==0.5.3
 tqdm==4.67.1
 typing-extensions==4.13.2
 whitenoise==6.7.0
+dj-database-url==3.0.0

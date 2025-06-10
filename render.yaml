@@ -3,7 +3,7 @@ services:
     name: tarot-chatbot
     env: python
     buildCommand: "./render_build.sh"
-    startCommand: "gunicorn tarot_prj.wsgi:application"
+    startCommand: "gunicorn tarot_prj.wsgi:application --timeout 120"
     envVars:
       - key: DEBUG
         value: "False"

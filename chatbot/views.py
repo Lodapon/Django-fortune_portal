@@ -149,13 +149,13 @@ def index(request):
                     extra_cards_info = request.session.get('extra_cards_info', [])
                     all_cards_info = selected_cards_info + extra_cards_info
 
-                    # Suggest drawing extra cards after 3rd question
-                    if request.session.get('question_count', 0) == 3 and not request.session.get('extra_cards_suggested', False):
-                        request.session['chat_history'].append({
-                            'role': 'bot',
-                            'text': '🃏 คุณได้ถามครบ 3 คำถามแล้ว หากต้องการคำแนะนำเพิ่มเติม คุณสามารถจับไพ่เพิ่มอีก 3 ใบเพื่อเจาะลึกสถานการณ์มากขึ้น'
-                        })
-                        request.session['extra_cards_suggested'] = True
+                    # # Suggest drawing extra cards after 3rd question
+                    # if request.session.get('question_count', 0) == 3 and not request.session.get('extra_cards_suggested', False):
+                    #     request.session['chat_history'].append({
+                    #         'role': 'bot',
+                    #         'text': '🃏 คุณได้ถามครบ 3 คำถามแล้ว หากต้องการคำแนะนำเพิ่มเติม คุณสามารถจับไพ่เพิ่มอีก 3 ใบเพื่อเจาะลึกสถานการณ์มากขึ้น'
+                    #     })
+                    #     request.session['extra_cards_suggested'] = True
 
                     # Build card summary from all drawn cards
                     card_summary = "\n".join([
@@ -180,7 +180,7 @@ def index(request):
                                 {"role": "user", "content": prompt}
                             ],
                             temperature=0.7,
-                            max_tokens=600
+                            max_tokens=800,
                         )
                         bot_reply = response.choices[0].message.content.strip()
                     except Exception as e:

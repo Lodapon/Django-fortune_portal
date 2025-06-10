@@ -173,12 +173,14 @@ def index(request):
 
                     try:
                         response = client.chat.completions.create(
-                            model="gpt-4o",
+                            # model="gpt-4o",
+                            model="gpt-3.5-turbo",
                             messages=[
                                 {"role": "system", "content": "คุณคือหมอดูไพ่ทาโรต์ผู้ให้คำปรึกษาเรื่องความรัก การงาน และชีวิต"},
                                 {"role": "user", "content": prompt}
                             ],
-                            temperature=0.7
+                            temperature=0.7,
+                            max_tokens=600
                         )
                         bot_reply = response.choices[0].message.content.strip()
                     except Exception as e:

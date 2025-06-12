@@ -3,6 +3,8 @@ import os
 from dotenv import load_dotenv
 import dj_database_url
 
+load_dotenv()
+
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
@@ -14,7 +16,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-(&xp&c_z1u-2h-r8q*m1l-^i^69$o=+sw=q+wso35l@v86nrn%'
+# SECRET_KEY = 'django-insecure-(&xp&c_z1u-2h-r8q*m1l-^i^69$o=+sw=q+wso35l@v86nrn%'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
@@ -125,6 +127,9 @@ USE_TZ = True
 # STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  
 
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'

@@ -43,6 +43,27 @@ def get_card_image_filename(name):
     filename = special_cases.get(name, name.replace(' ', '_') + '.jpg')
     return f"chatbot/{filename}"
 
+CASUAL_RESPONSES = {
+    'thx': "ยินดีค่ะ 😊 ขอให้โชคดีและพบเจอแต่สิ่งดี ๆ นะคะ",
+    'thank': "ยินดีเสมอค่ะ 😊 ขอให้โชคดีและพบเจอแต่สิ่งดี ๆ นะคะ",
+    'ขอบคุณ': "ยินดีมากค่ะ 💖 ขอให้คำทำนายเป็นประโยชน์นะคะ",
+    'บาย': "ลาก่อนค่ะ ขอให้คุณพบเจอสิ่งดี ๆ 🌟",
+    'bye': "ลาก่อนค่ะ ขอให้คุณพบเจอสิ่งดี ๆ 🌟",
+    'บ๊ายบาย': "บ๊ายบายค่ะ แล้วกลับมาคุยกันใหม่นะคะ 💫",
+    'love': "ขอบคุณค่ะ 💕 ขอให้ความรักของคุณเต็มไปด้วยพลังบวก",
+    'ดีจัง': "ดีใจที่คุณชอบนะคะ 😊",
+    'ชอบ': "ขอบคุณที่ชอบค่ะ ❤️",
+    'ช่วยได้เยอะเลย': "ดีใจที่เป็นประโยชน์นะคะ 💡",
+    'ตอบได้ดีมาก': "ขอบคุณค่ะ ฉันพยายามเต็มที่เพื่อคุณเลยนะ 🧙‍♀️"
+}
+
+def detect_casual_message(message):
+    message = message.lower()
+    for keyword, reply in CASUAL_RESPONSES.items():
+        if keyword in message:
+            return reply
+    return None
+
 @csrf_exempt
 def index(request):
     CARD_DATA = load_card_data()
@@ -138,6 +159,12 @@ def index(request):
             user_message = request.POST.get('message')
             if user_message:
                 request.session['chat_history'].append({'role': 'user', 'text': user_message})
+
+                casual_reply = detect_casual_message(user_message)
+                if casual_reply:
+                    request.session['chat_history'].append({'role': 'bot', 'text': casual_reply})
+                    request.session.modified = True
+                    return redirect('chatbot:index')  # Skip tarot reading and return polite reply
 
                 if not request.session.get('has_drawn', False):
                     request.session['chat_history'].append({
